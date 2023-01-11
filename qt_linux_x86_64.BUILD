@@ -7,10 +7,12 @@ load("@rules_qt//:qt_libraries.bzl", "QT_LIBRARIES")
             "lib/lib%s.so*" % library_name,
             "lib/libicu*.so*",
         ]),
-        hdrs = glob(["include/%s/**" % include_folder]),
         includes = ["include"],
         target_compatible_with = ["@platforms//os:linux"],
         visibility = ["//visibility:public"],
+        deps = [
+            ":qt_hdrs",
+        ],
     )
     for name, include_folder, library_name, _ in QT_LIBRARIES
 ]

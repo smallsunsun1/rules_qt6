@@ -22,13 +22,23 @@ def fetch_qt6():
     #    build_file = "@rules_qt//:qt_windows_x86_64.BUILD",
     #)
 
+    # http_archive(
+    #     name = "qt_linux_x86_64",
+    #     urls = [
+    #         "https://vertexwahn.de/lfs/v1/qt_6.4.0_linux_desktop_gcc_64.tar.xz",
+    #     ],
+    #     sha256 = "809919895e2ac0567df9290676d4ec6cd1ed39c432dc5da0722b3104681fd376",
+    #     strip_prefix = "6.4.0/gcc_64",
+    #     build_file = "@rules_qt//:qt_linux_x86_64.BUILD",
+    # )
+
     http_archive(
         name = "qt_linux_x86_64",
         urls = [
-            "https://vertexwahn.de/lfs/v1/qt_6.4.0_linux_desktop_gcc_64.tar.xz",
+            "https://devops-generic.pkg.coding.smoa.cloud/artifacts/qt/qt-6.3.2-linux-x64.tar.gz?version=latest",
         ],
-        sha256 = "809919895e2ac0567df9290676d4ec6cd1ed39c432dc5da0722b3104681fd376",
-        strip_prefix = "6.4.0/gcc_64",
+        sha256 = "5d8ed26a8ae42abac074aa4b3d901922d75a8cf59f0ea66c7aebe03cbef202f7",
+        strip_prefix = "qt",
         build_file = "@rules_qt//:qt_linux_x86_64.BUILD",
     )
 

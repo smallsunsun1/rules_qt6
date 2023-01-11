@@ -3,11 +3,6 @@ load("@rules_qt//:qt_libraries.bzl", "QT_LIBRARIES")
 [
     cc_import(
         name = "qt_%s_windows_import" % name,
-        # When being on Linux this glob will be empty
-        hdrs = glob(
-            ["include/%s/**" % include_folder],
-            allow_empty = True,
-        ),
         interface_library = "lib/%s.lib" % library_name,
         shared_library = "bin/%s.dll" % library_name,
         target_compatible_with = ["@platforms//os:windows"],
@@ -18,15 +13,13 @@ load("@rules_qt//:qt_libraries.bzl", "QT_LIBRARIES")
 [
     cc_library(
         name = "qt_%s_windows" % name,
-        # When being on Linux this glob will be empty
-        hdrs = glob(
-            ["include/%s/**" % include_folder],
-            allow_empty = True,
-        ),
         includes = ["include"],
         target_compatible_with = ["@platforms//os:windows"],
         visibility = ["//visibility:public"],
-        deps = [":qt_%s_windows_import" % name],
+        deps = [
+            ":qt_%s_windows_import" % name,
+            ":qt_hdrs",
+        ],
     )
     for name, include_folder, _, _ in QT_LIBRARIES
 ]
